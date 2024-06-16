@@ -1,15 +1,35 @@
+import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import './App.scss'
+import { Checkbox } from './Checkbox'
 
-interface IForm {
+export interface IForm {
 	'e-mail': string
 	message: string
+	isImportant: boolean
 }
 
 function App() {
-	const { register, handleSubmit, formState } = useForm<IForm>({
-		mode: 'onChange',
-	})
+	const { register, handleSubmit, formState, reset, watch, control } =
+		useForm<IForm>({
+			mode: 'onChange',
+		})
+
+	//следим за полем 'e-mail'
+	const emailWatch = watch('e-mail')
+
+	useEffect(() => {
+		console.log(emailWatch)
+	}, [emailWatch])
+
+	// назначаем данные
+	// useEffect(() => {
+	// 	//data from server
+	// 	reset({
+	// 		'e-mail': 'node@yandex.ru',
+	// 		message: 'test',
+	// 	})
+	// }, [reset])
 
 	const errorsEmail = formState.errors['e-mail']?.message
 	const errorMessage = formState.errors['message']?.message
@@ -66,6 +86,8 @@ function App() {
 						{errorMessage}
 					</p>
 				)}
+
+				<Checkbox control={control} />
 				<button type='submit'>Send</button>
 			</form>
 		</>
