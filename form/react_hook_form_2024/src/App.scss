@@ -1,0 +1,30 @@
+#root {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
+}
+
+form {
+	> input,
+	> textarea {
+		width: 100%;
+		display: block;
+		font-size: 16px;
+		padding: 6px 8px;
+		outline: none;
+		border: 1px solid #aaaaaa;
+		transition: border-color 0.3s;
+		border-radius: 5px;
+
+		&:focus {
+			border-color: purple;
+		}
+	}
+
+	> textarea {
+		height: 10rem;
+		resize: none;
+		margin-top: 15px;
+	}
+}
